@@ -25,10 +25,10 @@ minima:
 
   # Generate social links in footer.
   #
-  # social_links:
+   social_links:
 
-  #   - { platform: github,         user_url: "https://github.com/alichte" }
-  #   - { platform: linkedin,       user_url: "https://www.linkedin.com/in/alexlichtenberg/" }
+     - { platform: github,         user_url: "https://github.com/alichte" }
+     - { platform: linkedin,       user_url: "https://www.linkedin.com/in/alexlichtenberg/" }
 
 
 
