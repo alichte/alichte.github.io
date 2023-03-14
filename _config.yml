@@ -1,1 +1,43 @@
+title: Draft Blog Title
+author:
+  name: Alex Lichtenberg
+  email: alichtenberg@protonmail.com
+
+# The `>` after `description:` means to ignore line-breaks until next key.
+# If you want to omit the line-break after the end of text, use `>-` instead.
+description: >
+Hello and welcome to my site! This exists to show off some of my portfolio. 
+# Build settings
+
 theme: minima
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Theme-specific settings
+
+minima:
+  # Minima date format.
+  # Refer to https://shopify.github.io/liquid/filters/date/ if you want to customize this.
+  #
+  # date_format: "%b %-d, %Y"
+
+  # Generate social links in footer.
+  #
+  # social_links:
+
+  #   - { platform: github,         user_url: "https://github.com/alichte" }
+  #   - { platform: linkedin,       user_url: "https://www.linkedin.com/in/alexlichtenberg/" }
+
+
+
+# If you want to link only specific pages in your header, uncomment this and add the path to the pages in
+# order as they should show up.
+#
+# header_pages:
+#   - about.md
+
+# Set to `true` to show excerpts on the homepage.
+#
+# show_excerpts: false
