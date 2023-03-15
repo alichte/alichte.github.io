@@ -223,7 +223,7 @@ sns.pairplot(all_gens[all_num], plot_kws={'alpha':0.1})
 
 
     
-![png](output_6_1.png)
+![Pairplot of Stats](output_6_1.png){:class="img-responsive"}
     
 
 
