@@ -65,7 +65,7 @@ all_gens.describe()
 </style>
 <table border="1" class="dataframe">
   <thead>
-    <tr style="text-align: right;">
+    <tr style="text-align: right; overflow-x:auto;">
       <th></th>
       <th>Unnamed: 0</th>
       <th>id</th>
@@ -213,17 +213,6 @@ all_gens['secondary_type'] = all_gens['secondary_type'].astype('category')
 all_num = ["height","weight","hp","attack","defense","spa","spd","speed","stat_total"]
 sns.pairplot(all_gens[all_num], plot_kws={'alpha':0.1})
 ```
-
-
-
-
-    <seaborn.axisgrid.PairGrid at 0x17296b87070>
-
-
-
-
-    
-![Pairplot of Stats](output_6_1.png){:class="img-responsive"}
 <img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_6_1.png" style="display: block; margin: auto;" />  
 
 
@@ -234,17 +223,8 @@ Next, I wanted to examine the correlation between different stats. There is noth
 corr_mat = all_gens[all_num].corr()
 sns.heatmap(corr_mat, annot=True).set_title('Correlation of Statistics')
 ```
-
-
-
-
-    Text(0.5, 1.0, 'Correlation of Statistics')
-
-
-
-
     
-![png](output_8_1.png)
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_8_1.png" style="display: block; margin: auto;" /> 
     
 
 
@@ -258,17 +238,8 @@ ax.set_xticklabels(ax.get_xticklabels(), rotation=40, ha="right", fontsize=8)
 ax.set_title('Primary Type Distribution Across Generations')
 ax.plot()
 ```
-
-
-
-
-    []
-
-
-
-
     
-![png](https://github.com/alichte/alichte.github.io/blob/main/_posts/output_10_1.png)
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_10_1.png" style="display: block; margin: auto;" /> 
     
 
 
@@ -278,9 +249,6 @@ To see how the type distribution changed across generations, I generated a cross
 ```python
 pd.crosstab(all_gens['primary_type'], all_gens['gen']).sort_values(5, ascending=False)
 ```
-
-
-
 
 <div>
 <style scoped>
@@ -549,8 +517,6 @@ pd.crosstab(all_gens['primary_type'], all_gens['gen']).sort_values(5, ascending=
 The chart below shows the distributuion of secondary types across generations. The most common seondary type is None, followed by Flying, which is more than twice as common as the next-highest value. Flying is not a common Primary type, but it is by far the most common Secondary type. 
 
 
-
-
 ```python
 ax = sns.countplot(data=all_gens, x = 'secondary_type', order = all_gens['secondary_type'].value_counts().index, palette = ['#070707', '#8899FF', '#AA5599', '#FF5599', '#DDBB55', '#EE99EE','#BB5544',
                                                                                                                             '#AAAABB','#7766EE','#6666BB','#77CC55','#775544','#3399FF','#66CCFF','#DDBB55','#FF4422','#A9A896','#FFCC33','#AABB22'])
@@ -559,16 +525,9 @@ ax.set_title('Secondary Type Distribution Across Generations')
 ax.plot()
 ```
 
-
-
-
-    []
-
-
-
-
     
-![png](../assets/2023-03-14-Pokeclustering/output_14_1.png)
+
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_14_1.png" style="display: block; margin: auto;" /> 
     
 
 
@@ -582,15 +541,7 @@ sns.heatmap(ctab, robust = False).set_title('Co-occurance of Types')
 ```
 
 
-
-
-    Text(0.5, 1.0, 'Co-occurance of Types')
-
-
-
-
-    
-![png](output_16_1.png)
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_16_1.png" style="display: block; margin: auto;" /> 
     
 
 
@@ -600,17 +551,7 @@ We've examined how type distribution has changed across generations, but equally
 ```python
 sns.violinplot( x = all_gens['gen'], y = all_gens['stat_total'], palette = ['#AEB1BA']).set_title('Total Stat Distribution Across Generations')
 ```
-
-
-
-
-    Text(0.5, 1.0, 'Total Stat Distribution Across Generations')
-
-
-
-
-    
-![png](output_18_1.png)
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_18_1.png" style="display: block; margin: auto;" /> 
     
 
 
@@ -649,18 +590,8 @@ for i in range(1, max_clust):
 ```python
 sns.scatterplot(x = clust, y = scores).set_title('Intertia in KMeans Runs of Varying K')
 ```
-
-
-
-
-    Text(0.5, 1.0, 'Intertia in KMeans Runs of Varying K')
-
-
-
-
     
-![png](output_21_1.png)
-    
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_21_1.png" style="display: block; margin: auto;" /> 
 
 
 Identifying clusters is great, but to make the results tractable, I want to find the centroid (most representative) pokemon for each. The code below runs the final iteration kf KMeans with 50 clusters, identifies the centroids, and prints the first few results. We will dig into these more below. On first look, it seems we may have found some of the clusters I hypothesized above: Grass-starters, Water Staters, and Regional Birds.
@@ -2561,16 +2492,7 @@ Instead of digging into every cluster, we can examine them at scale. There are a
 sns.histplot(all_gens, x = "gen", y = "cluster", bins = 50).set_title('Cluster Occurance Across Generations')
 ```
 
-
-
-
-    Text(0.5, 1.0, 'Cluster Occurance Across Generations')
-
-
-
-
-    
-![png](output_33_1.png)
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_33_1.png" style="display: block; margin: auto;" /> 
     
 
 
@@ -3276,16 +3198,8 @@ There are fewer clusters here than in the previoust run- as expected if this is 
 sns.scatterplot(x = js_clust, y = js_scores).set_title('Intertia in KMeans Runs of Varying K')
 ```
 
-
-
-
-    Text(0.5, 1.0, 'Intertia in KMeans Runs of Varying K')
-
-
-
-
-    
-![png](output_41_1.png)
+  
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_41_1.png" style="display: block; margin: auto;" /> 
     
 
 
@@ -3812,91 +3726,103 @@ for i in range(15):
 
 
     
-![png](output_46_0.png)
+
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_46_0.png" style="display: block; margin: auto;" /> 
     
 
 
 
     
-![png](output_46_1.png)
+
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_46_1.png" style="display: block; margin: auto;" /> 
     
 
 
 
     
-![png](output_46_2.png)
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_46_2.png" style="display: block; margin: auto;" /> 
     
 
 
 
     
-![png](output_46_3.png)
+
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_46_3.png" style="display: block; margin: auto;" /> 
     
 
 
 
     
-![png](output_46_4.png)
+
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_46_4.png" style="display: block; margin: auto;" /> 
     
 
 
 
     
-![png](output_46_5.png)
+
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_46_5.png" style="display: block; margin: auto;" /> 
     
 
 
 
     
-![png](output_46_6.png)
+
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_46_6.png" style="display: block; margin: auto;" /> 
     
 
 
 
     
-![png](output_46_7.png)
+
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_46_7.png" style="display: block; margin: auto;" /> 
     
 
 
 
     
-![png](output_46_8.png)
+
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_46_8.png" style="display: block; margin: auto;" /> 
     
 
 
 
     
-![png](output_46_9.png)
+
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_46_9.png" style="display: block; margin: auto;" /> 
     
 
 
 
     
-![png](output_46_10.png)
+
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_46_10.png" style="display: block; margin: auto;" /> 
     
 
 
 
     
-![png](output_46_11.png)
+
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_46_11.png" style="display: block; margin: auto;" /> 
     
 
 
 
     
-![png](output_46_12.png)
+
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_46_12.png" style="display: block; margin: auto;" /> 
     
 
 
 
     
-![png](output_46_13.png)
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_46_13.png" style="display: block; margin: auto;" /> 
     
 
 
 
     
-![png](output_46_14.png)
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_46_14.png" style="display: block; margin: auto;" /> 
     
 
 
@@ -3909,14 +3835,7 @@ sns.histplot(all_gens, x = "gen", y = "js_cluster", bins = 50).set_title('Cluste
 
 
 
-
-    Text(0.5, 1.0, 'Cluster Occurance Across Generations')
-
-
-
-
-    
-![png](output_48_1.png)
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_48_1.png" style="display: block; margin: auto;" /> 
     
 
 
