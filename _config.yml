@@ -10,7 +10,7 @@ description: >
 # Build settings
 
 theme: minima
-
+url: https://alichte.github.io/
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
