@@ -568,7 +568,7 @@ ax.plot()
 
 
     
-![png](output_14_1.png)
+![png](../assets/2023-03-13-Pokeclustering/output_14_1.png)
     
 
 
