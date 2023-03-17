@@ -268,7 +268,7 @@ ax.plot()
 
 
     
-![png](output_10_1.png)
+![png](https://github.com/alichte/alichte.github.io/blob/main/_posts/output_10_1.png)
     
 
 
