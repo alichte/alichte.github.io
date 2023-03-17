@@ -224,7 +224,7 @@ sns.pairplot(all_gens[all_num], plot_kws={'alpha':0.1})
 
     
 ![Pairplot of Stats](output_6_1.png){:class="img-responsive"}
-    
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_6_1.png" style="display: block; margin: auto;" />  
 
 
 Next, I wanted to examine the correlation between different stats. There is nothing particularly surprising here. `height` and `weight` have a correlation of 0.63, the highest of any individual stats together. `stat_total` is fairly highly correlated with all of the individual stats but that is to be expected- any mon with a particularly high or low value for any stat probably has a high or low `stat_total`. 
