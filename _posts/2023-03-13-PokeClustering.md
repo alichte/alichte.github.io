@@ -224,6 +224,7 @@ sns.pairplot(all_gens[all_num], plot_kws={'alpha':0.1})
 
     
 ![png](output_6_1.png)
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_6_1.png" style="display: block; margin: auto;" />  
     
 
 
@@ -245,6 +246,7 @@ sns.heatmap(corr_mat, annot=True).set_title('Correlation of Statistics')
 
     
 ![png](output_8_1.png)
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_8_1.png" style="display: block; margin: auto;" />  
     
 
 
@@ -269,6 +271,7 @@ ax.plot()
 
     
 ![png](output_10_1.png)
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_10_1.png" style="display: block; margin: auto;" />  
     
 
 
