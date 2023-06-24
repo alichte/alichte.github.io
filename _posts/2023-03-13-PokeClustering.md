@@ -223,7 +223,6 @@ sns.pairplot(all_gens[all_num], plot_kws={'alpha':0.1})
 
 
     
-![png](output_6_1.png)
 <img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_6_1.png" style="display: block; margin: auto;" />  
     
 
@@ -239,13 +238,11 @@ sns.heatmap(corr_mat, annot=True).set_title('Correlation of Statistics')
 
 
 
-    Text(0.5, 1.0, 'Correlation of Statistics')
 
 
 
 
     
-![png](output_8_1.png)
 <img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_8_1.png" style="display: block; margin: auto;" />  
     
 
@@ -264,13 +261,12 @@ ax.plot()
 
 
 
-    []
 
 
 
 
     
-![png](output_10_1.png)
+
 <img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_10_1.png" style="display: block; margin: auto;" />  
     
 
@@ -565,13 +561,13 @@ ax.plot()
 
 
 
-    []
 
 
 
 
     
-![png](output_14_1.png)
+
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_14_1.png" style="display: block; margin: auto;" />  
     
 
 
@@ -593,7 +589,7 @@ sns.heatmap(ctab, robust = False).set_title('Co-occurance of Types')
 
 
     
-![png](output_16_1.png)
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_16_1.png" style="display: block; margin: auto;" />  
     
 
 
@@ -607,13 +603,12 @@ sns.violinplot( x = all_gens['gen'], y = all_gens['stat_total'], palette = ['#AE
 
 
 
-    Text(0.5, 1.0, 'Total Stat Distribution Across Generations')
-
 
 
 
     
-![png](output_18_1.png)
+
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_18_1.png" style="display: block; margin: auto;" />  
     
 
 
@@ -656,13 +651,10 @@ sns.scatterplot(x = clust, y = scores).set_title('Intertia in KMeans Runs of Var
 
 
 
-    Text(0.5, 1.0, 'Intertia in KMeans Runs of Varying K')
-
-
 
 
     
-![png](output_21_1.png)
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_21_1.png" style="display: block; margin: auto;" />  
     
 
 
@@ -2567,13 +2559,12 @@ sns.histplot(all_gens, x = "gen", y = "cluster", bins = 50).set_title('Cluster O
 
 
 
-    Text(0.5, 1.0, 'Cluster Occurance Across Generations')
-
 
 
 
     
-![png](output_33_1.png)
+
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_33_1.png" style="display: block; margin: auto;" />  
     
 
 
@@ -3288,7 +3279,7 @@ sns.scatterplot(x = js_clust, y = js_scores).set_title('Intertia in KMeans Runs 
 
 
     
-![png](output_41_1.png)
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_41_1.png" style="display: block; margin: auto;" />  
     
 
 
@@ -3839,97 +3830,96 @@ for i in range(16):
 
 
     
-![png](output_46_0.png)
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_46_0.png" style="display: block; margin: auto;" />  
     
 
 
 
     
-![png](output_46_1.png)
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_46_1.png" style="display: block; margin: auto;" />  
     
 
 
 
     
-![png](output_46_2.png)
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_46_2.png" style="display: block; margin: auto;" />  
     
 
 
 
     
-![png](output_46_3.png)
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_46_3.png" style="display: block; margin: auto;" />  
     
 
 
 
     
-![png](output_46_4.png)
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_46_4.png" style="display: block; margin: auto;" />  
     
 
 
 
     
-![png](output_46_5.png)
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_46_5.png" style="display: block; margin: auto;" />  
+
+
+
+    
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_46_6.png" style="display: block; margin: auto;" />  
     
 
 
 
     
-![png](output_46_6.png)
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_46_7.png" style="display: block; margin: auto;" />  
     
 
 
 
     
-![png](output_46_7.png)
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_46_8.png" style="display: block; margin: auto;" />  
     
 
 
 
     
-![png](output_46_8.png)
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_46_9.png" style="display: block; margin: auto;" />  
     
 
 
 
     
-![png](output_46_9.png)
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_46_10.png" style="display: block; margin: auto;" />  
     
 
 
 
     
-![png](output_46_10.png)
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_46_11.png" style="display: block; margin: auto;" />  
     
 
 
 
     
-![png](output_46_11.png)
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_46_12.png" style="display: block; margin: auto;" />  
     
 
 
 
     
-![png](output_46_12.png)
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_46_13.png" style="display: block; margin: auto;" />  
     
 
 
 
     
-![png](output_46_13.png)
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_46_14.png" style="display: block; margin: auto;" />  
     
 
 
 
     
-![png](output_46_14.png)
-    
-
-
-
-    
-![png](output_46_15.png)
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_46_15.png" style="display: block; margin: auto;" />  
     
 
 
@@ -3943,13 +3933,11 @@ sns.histplot(all_gens, x = "gen", y = "js_cluster", bins = 50).set_title('Cluste
 
 
 
-    Text(0.5, 1.0, 'Cluster Occurance Across Generations')
-
 
 
 
     
-![png](output_48_1.png)
+<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_48_1.png" style="display: block; margin: auto;" />  
     
 
 
