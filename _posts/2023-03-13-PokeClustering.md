@@ -65,7 +65,7 @@ all_gens.describe()
 </style>
 <table border="1" class="dataframe">
   <thead>
-    <tr style="text-align: right; overflow-x:auto;">
+    <tr style="text-align: right;">
       <th></th>
       <th>Unnamed: 0</th>
       <th>id</th>
@@ -213,7 +213,18 @@ all_gens['secondary_type'] = all_gens['secondary_type'].astype('category')
 all_num = ["height","weight","hp","attack","defense","spa","spd","speed","stat_total"]
 sns.pairplot(all_gens[all_num], plot_kws={'alpha':0.1})
 ```
-<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_6_1.png" style="display: block; margin: auto;" />  
+
+
+
+
+    <seaborn.axisgrid.PairGrid at 0x2713faf7730>
+
+
+
+
+    
+![png](output_6_1.png)
+    
 
 
 Next, I wanted to examine the correlation between different stats. There is nothing particularly surprising here. `height` and `weight` have a correlation of 0.63, the highest of any individual stats together. `stat_total` is fairly highly correlated with all of the individual stats but that is to be expected- any mon with a particularly high or low value for any stat probably has a high or low `stat_total`. 
@@ -223,8 +234,17 @@ Next, I wanted to examine the correlation between different stats. There is noth
 corr_mat = all_gens[all_num].corr()
 sns.heatmap(corr_mat, annot=True).set_title('Correlation of Statistics')
 ```
+
+
+
+
+    Text(0.5, 1.0, 'Correlation of Statistics')
+
+
+
+
     
-<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_8_1.png" style="display: block; margin: auto;" /> 
+![png](output_8_1.png)
     
 
 
@@ -238,8 +258,17 @@ ax.set_xticklabels(ax.get_xticklabels(), rotation=40, ha="right", fontsize=8)
 ax.set_title('Primary Type Distribution Across Generations')
 ax.plot()
 ```
+
+
+
+
+    []
+
+
+
+
     
-<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_10_1.png" style="display: block; margin: auto;" /> 
+![png](output_10_1.png)
     
 
 
@@ -249,6 +278,9 @@ To see how the type distribution changed across generations, I generated a cross
 ```python
 pd.crosstab(all_gens['primary_type'], all_gens['gen']).sort_values(5, ascending=False)
 ```
+
+
+
 
 <div>
 <style scoped>
@@ -517,6 +549,8 @@ pd.crosstab(all_gens['primary_type'], all_gens['gen']).sort_values(5, ascending=
 The chart below shows the distributuion of secondary types across generations. The most common seondary type is None, followed by Flying, which is more than twice as common as the next-highest value. Flying is not a common Primary type, but it is by far the most common Secondary type. 
 
 
+
+
 ```python
 ax = sns.countplot(data=all_gens, x = 'secondary_type', order = all_gens['secondary_type'].value_counts().index, palette = ['#070707', '#8899FF', '#AA5599', '#FF5599', '#DDBB55', '#EE99EE','#BB5544',
                                                                                                                             '#AAAABB','#7766EE','#6666BB','#77CC55','#775544','#3399FF','#66CCFF','#DDBB55','#FF4422','#A9A896','#FFCC33','#AABB22'])
@@ -525,9 +559,16 @@ ax.set_title('Secondary Type Distribution Across Generations')
 ax.plot()
 ```
 
-    
 
-<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_14_1.png" style="display: block; margin: auto;" /> 
+
+
+    []
+
+
+
+
+    
+![png](output_14_1.png)
     
 
 
@@ -541,7 +582,15 @@ sns.heatmap(ctab, robust = False).set_title('Co-occurance of Types')
 ```
 
 
-<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_16_1.png" style="display: block; margin: auto;" /> 
+
+
+    Text(0.5, 1.0, 'Co-occurance of Types')
+
+
+
+
+    
+![png](output_16_1.png)
     
 
 
@@ -551,7 +600,17 @@ We've examined how type distribution has changed across generations, but equally
 ```python
 sns.violinplot( x = all_gens['gen'], y = all_gens['stat_total'], palette = ['#AEB1BA']).set_title('Total Stat Distribution Across Generations')
 ```
-<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_18_1.png" style="display: block; margin: auto;" /> 
+
+
+
+
+    Text(0.5, 1.0, 'Total Stat Distribution Across Generations')
+
+
+
+
+    
+![png](output_18_1.png)
     
 
 
@@ -590,8 +649,18 @@ for i in range(1, max_clust):
 ```python
 sns.scatterplot(x = clust, y = scores).set_title('Intertia in KMeans Runs of Varying K')
 ```
+
+
+
+
+    Text(0.5, 1.0, 'Intertia in KMeans Runs of Varying K')
+
+
+
+
     
-<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_21_1.png" style="display: block; margin: auto;" /> 
+![png](output_21_1.png)
+    
 
 
 Identifying clusters is great, but to make the results tractable, I want to find the centroid (most representative) pokemon for each. The code below runs the final iteration kf KMeans with 50 clusters, identifies the centroids, and prints the first few results. We will dig into these more below. On first look, it seems we may have found some of the clusters I hypothesized above: Grass-starters, Water Staters, and Regional Birds.
@@ -2492,7 +2561,16 @@ Instead of digging into every cluster, we can examine them at scale. There are a
 sns.histplot(all_gens, x = "gen", y = "cluster", bins = 50).set_title('Cluster Occurance Across Generations')
 ```
 
-<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_33_1.png" style="display: block; margin: auto;" /> 
+
+
+
+    Text(0.5, 1.0, 'Cluster Occurance Across Generations')
+
+
+
+
+    
+![png](output_33_1.png)
     
 
 
@@ -2731,7 +2809,7 @@ clust_df
       <td>13</td>
       <td>scovillain</td>
       <td>15</td>
-      <td>dark</td>
+      <td>ghost</td>
       <td>0.200000</td>
       <td>fire</td>
       <td>1.000000</td>
@@ -2995,7 +3073,7 @@ clust_df
       <td>35</td>
       <td>brambleghast</td>
       <td>20</td>
-      <td>water</td>
+      <td>grass</td>
       <td>0.150000</td>
       <td>ghost</td>
       <td>1.000000</td>
@@ -3198,8 +3276,16 @@ There are fewer clusters here than in the previoust run- as expected if this is 
 sns.scatterplot(x = js_clust, y = js_scores).set_title('Intertia in KMeans Runs of Varying K')
 ```
 
-  
-<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_41_1.png" style="display: block; margin: auto;" /> 
+
+
+
+    Text(0.5, 1.0, 'Intertia in KMeans Runs of Varying K')
+
+
+
+
+    
+![png](output_41_1.png)
     
 
 
@@ -3231,7 +3317,7 @@ for clust, idx in js_centroids:
     js_centroid_names.append((clust,name))
 
 js_clust_info = []
-for i in range(15):
+for i in range(16):
     cluster = all_gens.loc[all_gens['js_cluster'] == i]
     c,n = js_centroid_names[i]
     clust_size = len(cluster['primary_type'])
@@ -3382,7 +3468,7 @@ js_clust_df
       <td>2</td>
       <td>wailord</td>
       <td>19</td>
-      <td>water</td>
+      <td>normal</td>
       <td>0.263158</td>
       <td>none</td>
       <td>0.631579</td>
@@ -3502,7 +3588,7 @@ js_clust_df
       <td>7</td>
       <td>delphox</td>
       <td>60</td>
-      <td>psychic</td>
+      <td>fire</td>
       <td>0.150000</td>
       <td>none</td>
       <td>0.400000</td>
@@ -3689,9 +3775,33 @@ js_clust_df
       <td>35.818182</td>
       <td>15.307860</td>
     </tr>
+    <tr>
+      <th>15</th>
+      <td>15</td>
+      <td>tyrogue</td>
+      <td>69</td>
+      <td>bug</td>
+      <td>0.275362</td>
+      <td>none</td>
+      <td>0.666667</td>
+      <td>237.652174</td>
+      <td>31.166140</td>
+      <td>44.260870</td>
+      <td>...</td>
+      <td>38.724638</td>
+      <td>15.334799</td>
+      <td>38.681159</td>
+      <td>13.116527</td>
+      <td>34.144928</td>
+      <td>11.904542</td>
+      <td>38.333333</td>
+      <td>11.349094</td>
+      <td>43.507246</td>
+      <td>18.102465</td>
+    </tr>
   </tbody>
 </table>
-<p>15 rows × 21 columns</p>
+<p>16 rows × 21 columns</p>
 </div>
 
 
@@ -3701,7 +3811,7 @@ What would be a better way of visualizing these clusters than a pair plot? A rad
 
 ```python
 import matplotlib.pyplot as plt
-for i in range(15):  
+for i in range(16):  
     labels=np.array(['attack_mean', 'hp_mean', 'spa_mean', 'spd_mean', 'speed_mean', 'defense_mean'])
     stats=js_clust_df.loc[i,labels].values
     angles = np.array([np.pi/6, np.pi/2, 5*np.pi/6, 7*np.pi/6, 9*np.pi/6, 11*np.pi/6])
@@ -3726,103 +3836,97 @@ for i in range(15):
 
 
     
-
-<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_46_0.png" style="display: block; margin: auto;" /> 
+![png](output_46_0.png)
     
 
 
 
     
-
-<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_46_1.png" style="display: block; margin: auto;" /> 
+![png](output_46_1.png)
     
 
 
 
     
-<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_46_2.png" style="display: block; margin: auto;" /> 
+![png](output_46_2.png)
     
 
 
 
     
-
-<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_46_3.png" style="display: block; margin: auto;" /> 
+![png](output_46_3.png)
     
 
 
 
     
-
-<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_46_4.png" style="display: block; margin: auto;" /> 
+![png](output_46_4.png)
     
 
 
 
     
-
-<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_46_5.png" style="display: block; margin: auto;" /> 
+![png](output_46_5.png)
     
 
 
 
     
-
-<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_46_6.png" style="display: block; margin: auto;" /> 
+![png](output_46_6.png)
     
 
 
 
     
-
-<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_46_7.png" style="display: block; margin: auto;" /> 
+![png](output_46_7.png)
     
 
 
 
     
-
-<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_46_8.png" style="display: block; margin: auto;" /> 
+![png](output_46_8.png)
     
 
 
 
     
-
-<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_46_9.png" style="display: block; margin: auto;" /> 
+![png](output_46_9.png)
     
 
 
 
     
-
-<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_46_10.png" style="display: block; margin: auto;" /> 
+![png](output_46_10.png)
     
 
 
 
     
-
-<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_46_11.png" style="display: block; margin: auto;" /> 
+![png](output_46_11.png)
     
 
 
 
     
-
-<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_46_12.png" style="display: block; margin: auto;" /> 
+![png](output_46_12.png)
     
 
 
 
     
-<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_46_13.png" style="display: block; margin: auto;" /> 
+![png](output_46_13.png)
     
 
 
 
     
-<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_46_14.png" style="display: block; margin: auto;" /> 
+![png](output_46_14.png)
+    
+
+
+
+    
+![png](output_46_15.png)
     
 
 
@@ -3835,15 +3939,22 @@ sns.histplot(all_gens, x = "gen", y = "js_cluster", bins = 50).set_title('Cluste
 
 
 
-<img src="{{site.url}}/assets/2023-03-14-Pokeclustering/output_48_1.png" style="display: block; margin: auto;" /> 
+
+    Text(0.5, 1.0, 'Cluster Occurance Across Generations')
+
+
+
+
+    
+![png](output_48_1.png)
     
 
 
-For a sanity check, I've cherry picked cluster 13. This appears to be a cluster of Special Attackers with high Special Defense. I would have preferred this to have a little bit more granularity here- there are some Special Attack sweepers like Alaxazam and Gengar with very high `Spa` and `speed` as well as some more balanced Pokemon like Milotic that arguably don't belong together. A potential area of improvement for this analysis would be either to run with higher k or to engineer some features that would help that difference become more pronounced.
+For a sanity check, I've cherry picked cluster 14. This is a cluster that seems to have performed particularly well. It is comprised of defensive specialists- pokemon with high `defense`, `spd`, or in many cases, both. 
 
 
 ```python
-all_gens.loc[all_gens['js_cluster'] == 13]
+all_gens.loc[all_gens['js_cluster'] == 14]
 ```
 
 
@@ -3888,233 +3999,452 @@ all_gens.loc[all_gens['js_cluster'] == 13]
   </thead>
   <tbody>
     <tr>
-      <th>17</th>
-      <td>17</td>
-      <td>18</td>
-      <td>pidgeot</td>
-      <td>395</td>
-      <td>15</td>
-      <td>normal</td>
-      <td>flying</td>
-      <td>83</td>
-      <td>80</td>
-      <td>75</td>
-      <td>70</td>
-      <td>70</td>
-      <td>101</td>
-      <td>1</td>
-      <td>479</td>
-      <td>4</td>
-      <td>13</td>
-    </tr>
-    <tr>
-      <th>21</th>
-      <td>21</td>
-      <td>22</td>
-      <td>fearow</td>
-      <td>380</td>
-      <td>12</td>
-      <td>normal</td>
-      <td>flying</td>
-      <td>65</td>
-      <td>90</td>
-      <td>65</td>
+      <th>61</th>
       <td>61</td>
-      <td>61</td>
-      <td>100</td>
-      <td>1</td>
-      <td>442</td>
-      <td>4</td>
-      <td>13</td>
-    </tr>
-    <tr>
-      <th>23</th>
-      <td>23</td>
-      <td>24</td>
-      <td>arbok</td>
-      <td>650</td>
-      <td>35</td>
-      <td>poison</td>
-      <td>none</td>
-      <td>60</td>
-      <td>95</td>
-      <td>69</td>
-      <td>65</td>
-      <td>79</td>
-      <td>80</td>
-      <td>1</td>
-      <td>448</td>
-      <td>8</td>
-      <td>13</td>
-    </tr>
-    <tr>
-      <th>30</th>
-      <td>30</td>
-      <td>31</td>
-      <td>nidoqueen</td>
-      <td>600</td>
-      <td>13</td>
-      <td>poison</td>
-      <td>ground</td>
-      <td>90</td>
-      <td>92</td>
-      <td>87</td>
-      <td>75</td>
-      <td>85</td>
-      <td>76</td>
-      <td>1</td>
-      <td>505</td>
-      <td>8</td>
-      <td>13</td>
-    </tr>
-    <tr>
-      <th>33</th>
-      <td>33</td>
-      <td>34</td>
-      <td>nidoking</td>
-      <td>620</td>
-      <td>14</td>
-      <td>poison</td>
-      <td>ground</td>
-      <td>81</td>
-      <td>102</td>
-      <td>77</td>
-      <td>85</td>
-      <td>75</td>
-      <td>85</td>
-      <td>1</td>
-      <td>505</td>
-      <td>8</td>
-      <td>13</td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-      <td>...</td>
-    </tr>
-    <tr>
-      <th>56</th>
-      <td>56</td>
-      <td>962</td>
-      <td>bombirdier</td>
-      <td>429</td>
-      <td>15</td>
-      <td>flying</td>
-      <td>dark</td>
-      <td>70</td>
-      <td>103</td>
-      <td>85</td>
-      <td>60</td>
-      <td>85</td>
-      <td>82</td>
-      <td>9</td>
-      <td>485</td>
-      <td>11</td>
-      <td>13</td>
-    </tr>
-    <tr>
-      <th>58</th>
-      <td>58</td>
-      <td>964</td>
-      <td>palafin</td>
-      <td>602</td>
-      <td>13</td>
-      <td>water</td>
-      <td>none</td>
-      <td>100</td>
-      <td>70</td>
-      <td>72</td>
-      <td>53</td>
-      <td>62</td>
-      <td>100</td>
-      <td>9</td>
-      <td>457</td>
+      <td>213</td>
+      <td>shuckle</td>
+      <td>205</td>
+      <td>6</td>
+      <td>bug</td>
+      <td>rock</td>
+      <td>20</td>
+      <td>10</td>
+      <td>230</td>
+      <td>10</td>
+      <td>230</td>
+      <td>5</td>
       <td>2</td>
+      <td>505</td>
+      <td>14</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>47</th>
+      <td>47</td>
+      <td>299</td>
+      <td>nosepass</td>
+      <td>970</td>
+      <td>10</td>
+      <td>rock</td>
+      <td>none</td>
+      <td>30</td>
+      <td>45</td>
+      <td>135</td>
+      <td>45</td>
+      <td>90</td>
+      <td>30</td>
+      <td>3</td>
+      <td>375</td>
+      <td>16</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>104</th>
+      <td>104</td>
+      <td>356</td>
+      <td>dusclops</td>
+      <td>306</td>
+      <td>16</td>
+      <td>ghost</td>
+      <td>none</td>
+      <td>40</td>
+      <td>70</td>
+      <td>130</td>
+      <td>60</td>
+      <td>130</td>
+      <td>25</td>
+      <td>3</td>
+      <td>455</td>
+      <td>7</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>125</th>
+      <td>125</td>
+      <td>377</td>
+      <td>regirock</td>
+      <td>2300</td>
+      <td>17</td>
+      <td>rock</td>
+      <td>none</td>
+      <td>80</td>
+      <td>100</td>
+      <td>200</td>
+      <td>50</td>
+      <td>100</td>
+      <td>50</td>
+      <td>3</td>
+      <td>580</td>
+      <td>16</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>126</th>
+      <td>126</td>
+      <td>378</td>
+      <td>regice</td>
+      <td>1750</td>
+      <td>18</td>
+      <td>ice</td>
+      <td>none</td>
+      <td>80</td>
+      <td>50</td>
+      <td>100</td>
+      <td>100</td>
+      <td>200</td>
+      <td>50</td>
+      <td>3</td>
+      <td>580</td>
+      <td>6</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>127</th>
+      <td>127</td>
+      <td>379</td>
+      <td>registeel</td>
+      <td>2050</td>
+      <td>19</td>
+      <td>steel</td>
+      <td>none</td>
+      <td>80</td>
+      <td>75</td>
+      <td>150</td>
+      <td>75</td>
+      <td>150</td>
+      <td>50</td>
+      <td>3</td>
+      <td>580</td>
+      <td>33</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>24</td>
+      <td>411</td>
+      <td>bastiodon</td>
+      <td>1495</td>
       <td>13</td>
+      <td>rock</td>
+      <td>steel</td>
+      <td>60</td>
+      <td>52</td>
+      <td>168</td>
+      <td>47</td>
+      <td>138</td>
+      <td>30</td>
+      <td>4</td>
+      <td>495</td>
+      <td>38</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>50</th>
+      <td>50</td>
+      <td>437</td>
+      <td>bronzong</td>
+      <td>1870</td>
+      <td>13</td>
+      <td>steel</td>
+      <td>psychic</td>
+      <td>67</td>
+      <td>89</td>
+      <td>116</td>
+      <td>79</td>
+      <td>116</td>
+      <td>33</td>
+      <td>4</td>
+      <td>500</td>
+      <td>23</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>89</th>
+      <td>89</td>
+      <td>476</td>
+      <td>probopass</td>
+      <td>3400</td>
+      <td>14</td>
+      <td>rock</td>
+      <td>steel</td>
+      <td>60</td>
+      <td>55</td>
+      <td>145</td>
+      <td>75</td>
+      <td>150</td>
+      <td>40</td>
+      <td>4</td>
+      <td>525</td>
+      <td>38</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>90</th>
+      <td>90</td>
+      <td>477</td>
+      <td>dusknoir</td>
+      <td>1066</td>
+      <td>22</td>
+      <td>ghost</td>
+      <td>none</td>
+      <td>45</td>
+      <td>100</td>
+      <td>135</td>
+      <td>65</td>
+      <td>135</td>
+      <td>45</td>
+      <td>4</td>
+      <td>525</td>
+      <td>7</td>
+      <td>14</td>
     </tr>
     <tr>
       <th>66</th>
       <td>66</td>
-      <td>972</td>
-      <td>houndstone</td>
-      <td>150</td>
-      <td>20</td>
+      <td>560</td>
+      <td>scrafty</td>
+      <td>300</td>
+      <td>11</td>
+      <td>dark</td>
+      <td>fighting</td>
+      <td>65</td>
+      <td>90</td>
+      <td>115</td>
+      <td>45</td>
+      <td>115</td>
+      <td>58</td>
+      <td>5</td>
+      <td>488</td>
+      <td>29</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>69</th>
+      <td>69</td>
+      <td>563</td>
+      <td>cofagrigus</td>
+      <td>765</td>
+      <td>17</td>
       <td>ghost</td>
       <td>none</td>
-      <td>72</td>
-      <td>101</td>
-      <td>100</td>
+      <td>58</td>
       <td>50</td>
-      <td>97</td>
-      <td>68</td>
-      <td>9</td>
-      <td>488</td>
-      <td>7</td>
-      <td>13</td>
-    </tr>
-    <tr>
-      <th>70</th>
-      <td>70</td>
-      <td>976</td>
-      <td>veluza</td>
-      <td>900</td>
-      <td>25</td>
-      <td>water</td>
-      <td>psychic</td>
-      <td>90</td>
-      <td>102</td>
-      <td>73</td>
-      <td>78</td>
-      <td>65</td>
-      <td>70</td>
-      <td>9</td>
-      <td>478</td>
-      <td>0</td>
-      <td>13</td>
-    </tr>
-    <tr>
-      <th>91</th>
-      <td>91</td>
-      <td>997</td>
-      <td>arctibax</td>
-      <td>300</td>
-      <td>8</td>
-      <td>dragon</td>
-      <td>ice</td>
-      <td>90</td>
+      <td>145</td>
       <td>95</td>
-      <td>66</td>
-      <td>45</td>
-      <td>65</td>
-      <td>62</td>
-      <td>9</td>
-      <td>423</td>
+      <td>105</td>
+      <td>30</td>
+      <td>5</td>
+      <td>483</td>
+      <td>7</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>104</th>
+      <td>104</td>
+      <td>598</td>
+      <td>ferrothorn</td>
+      <td>1100</td>
+      <td>10</td>
+      <td>grass</td>
+      <td>steel</td>
+      <td>74</td>
+      <td>94</td>
+      <td>131</td>
+      <td>54</td>
+      <td>116</td>
+      <td>20</td>
+      <td>5</td>
+      <td>489</td>
+      <td>38</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>31</th>
+      <td>31</td>
+      <td>681</td>
+      <td>aegislash-shield</td>
+      <td>530</td>
       <td>17</td>
+      <td>steel</td>
+      <td>ghost</td>
+      <td>60</td>
+      <td>50</td>
+      <td>140</td>
+      <td>50</td>
+      <td>140</td>
+      <td>60</td>
+      <td>6</td>
+      <td>500</td>
+      <td>33</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>53</th>
+      <td>53</td>
+      <td>703</td>
+      <td>carbink</td>
+      <td>57</td>
+      <td>3</td>
+      <td>rock</td>
+      <td>fairy</td>
+      <td>50</td>
+      <td>50</td>
+      <td>150</td>
+      <td>50</td>
+      <td>150</td>
+      <td>50</td>
+      <td>6</td>
+      <td>500</td>
+      <td>31</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>69</th>
+      <td>69</td>
+      <td>719</td>
+      <td>diancie</td>
+      <td>88</td>
+      <td>7</td>
+      <td>rock</td>
+      <td>fairy</td>
+      <td>50</td>
+      <td>100</td>
+      <td>150</td>
+      <td>100</td>
+      <td>150</td>
+      <td>50</td>
+      <td>6</td>
+      <td>600</td>
+      <td>31</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>26</td>
+      <td>748</td>
+      <td>toxapex</td>
+      <td>145</td>
+      <td>7</td>
+      <td>poison</td>
+      <td>water</td>
+      <td>50</td>
+      <td>63</td>
+      <td>152</td>
+      <td>53</td>
+      <td>142</td>
+      <td>35</td>
+      <td>7</td>
+      <td>495</td>
+      <td>37</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>30</td>
+      <td>752</td>
+      <td>araquanid</td>
+      <td>820</td>
+      <td>18</td>
+      <td>water</td>
+      <td>bug</td>
+      <td>68</td>
+      <td>70</td>
+      <td>92</td>
+      <td>50</td>
+      <td>132</td>
+      <td>42</td>
+      <td>7</td>
+      <td>454</td>
+      <td>25</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>49</th>
+      <td>49</td>
+      <td>771</td>
+      <td>pyukumuku</td>
+      <td>12</td>
+      <td>3</td>
+      <td>water</td>
+      <td>none</td>
+      <td>55</td>
+      <td>60</td>
+      <td>130</td>
+      <td>30</td>
+      <td>130</td>
+      <td>5</td>
+      <td>7</td>
+      <td>410</td>
+      <td>2</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>68</th>
+      <td>68</td>
+      <td>790</td>
+      <td>cosmoem</td>
+      <td>9999</td>
+      <td>1</td>
+      <td>psychic</td>
+      <td>none</td>
+      <td>43</td>
+      <td>29</td>
+      <td>131</td>
+      <td>29</td>
+      <td>131</td>
+      <td>37</td>
+      <td>7</td>
+      <td>400</td>
+      <td>21</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>83</th>
+      <td>83</td>
+      <td>805</td>
+      <td>stakataka</td>
+      <td>8200</td>
+      <td>55</td>
+      <td>rock</td>
+      <td>steel</td>
+      <td>61</td>
+      <td>131</td>
+      <td>211</td>
+      <td>53</td>
+      <td>101</td>
       <td>13</td>
+      <td>7</td>
+      <td>570</td>
+      <td>38</td>
+      <td>14</td>
+    </tr>
+    <tr>
+      <th>57</th>
+      <td>57</td>
+      <td>867</td>
+      <td>runerigus</td>
+      <td>666</td>
+      <td>16</td>
+      <td>ground</td>
+      <td>ghost</td>
+      <td>58</td>
+      <td>95</td>
+      <td>145</td>
+      <td>50</td>
+      <td>105</td>
+      <td>30</td>
+      <td>8</td>
+      <td>483</td>
+      <td>26</td>
+      <td>14</td>
     </tr>
   </tbody>
 </table>
-<p>69 rows × 17 columns</p>
 </div>
 
 
 
-One cluster that performed admirably was cluster 7, which seems to have grabbed many legenday pokemon that previously were not effectively clustered together, since their types are so disparate. There are some misses in here (Gholdengo) but for the most part, this seems like a high-performing cluster.
+Another cluster that performed well was cluster 7. This appears to be a cluster of Special Attackers with high Special Defense. I would have preferred this to have a little bit more granularity here- there are some Special Attack sweepers like Alaxazam and Gengar with very high `Spa` and `speed` as well as some more balanced Pokemon like Milotic that arguably don't belong together. A potential area of improvement for this analysis would be either to run with higher k or to engineer some features that would help that difference become more pronounced.
 
 
 ```python
@@ -5370,17 +5700,19 @@ all_gens.loc[all_gens['js_cluster'] ==7]
 
 While both cluster runs were insightful, they each clearly had some issues that could certainly be improved upon. Circling back to the questions I asked at the very beginning of this post, what can we now answer? 
 
-1. What can a brief exploratory data analysis tell us about Pokemon? 
+### 1. What can a brief exploratory data analysis tell us about Pokemon? 
 
 More than you would think! I won't rehash everything uncovered above, but one of the tidbits I found interesting is that while Flying is a common type, it is rarely a Primary type- it almost always occurs as a Secondary typing. 
 
-2. How have the stats assigned to Pokemon changed throughout the years?
+### 2. How have the stats assigned to Pokemon changed throughout the years?
 
 Yes, they have. Without the context of which pokemon were actually included in each generation's games this finding means less, but the average `stat_total` of pokemon introduced in each generation has gone up since the first three generations. 
 
-3. Are there clusters of similar Pokemon?
+### 3. Are there clusters of similar Pokemon?
 
 Yes, there are. The type of cluster you are interested in would change which Pokemon are clustered with each other, but we can say with certainty that we can programatically find clusters of similar Pokemon. 
+
+If you've made it this far, thank you for sticking around to read the whole post! I look forward to posting more content soon.
 
 
 ```python
