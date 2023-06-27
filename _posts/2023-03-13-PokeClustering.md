@@ -5695,7 +5695,7 @@ While both cluster runs were insightful, they each clearly had some issues that 
 
 More than you would think! I won't rehash everything uncovered above, but one of the tidbits I found interesting is that while Flying is a common type, it is rarely a Primary type- it almost always occurs as a Secondary typing. 
 
-### 2. How have the stats assigned to Pokemon changed throughout the years?
+### 2. Have the stats assigned to Pokemon changed throughout the years?
 
 Yes, they have. Without the context of which pokemon were actually included in each generation's games this finding means less, but the average `stat_total` of pokemon introduced in each generation has gone up since the first three generations. 
 
