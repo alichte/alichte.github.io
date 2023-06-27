@@ -152,7 +152,7 @@ ev_data['chain']['evolves_to'][0]['species']['name']
 
 
 
-With that exploration done, I dig into usint the API to bring back a set of pokemon, their types, and their stats. You could run this for any set, but I think it makes most sense to break into generations. A more robust function might allow you to set which generations you want to bring back, but in this case, you need to know the national dex numebr you want to start and stop with. Correct examples for all current generations are below. Note that the `pokebase` wrapper for PokeAPI is a bit slow. Running a generation will take at least half an hour. 
+With that exploration done, I dig into using the API to bring back a set of pokemon, their types, and their stats. You could run this for any set, but I think it makes most sense to break into generations. A more robust function might allow you to set which generations you want to bring back, but in this case, you need to know the national dex numebr you want to start and stop with. Correct examples for all current generations are below. Note that the `pokebase` wrapper for PokeAPI is a bit slow. Running a generation will take at least half an hour. 
 
 
 ```python
